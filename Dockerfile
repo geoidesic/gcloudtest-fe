@@ -1,8 +1,6 @@
 FROM nginx
 
-# Create app directory
-RUN mkdir -p /app
-WORKDIR /app
+WORKDIR /usr/share/nginx/html
 
 # Install app dependencies
 RUN apt-get update && \
@@ -10,10 +8,9 @@ RUN apt-get update && \
     curl -sL https://deb.nodesource.com/setup_10.x | bash && \
     apt-get -y install nodejs
 
-COPY package.json /app
+COPY . /usr/share/nginx/html
 RUN npm install
 
-# Bundle app source
-COPY . /app
+
 
 
