@@ -8,9 +8,10 @@ RUN apt-get update && \
     curl -sL https://deb.nodesource.com/setup_10.x | bash && \
     apt-get -y install nodejs
 
-COPY . /usr/share/nginx/html
+COPY package.json /usr/share/nginx/html
 RUN npm install
 
 
+COPY index.html /usr/share/nginx/html
 
 
