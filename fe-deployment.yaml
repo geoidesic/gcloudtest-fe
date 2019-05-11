@@ -17,6 +17,7 @@ spec:
       containers:
       - name: gcloudtest-fe
         image: gcr.io/deployment-test-239915/gcloud-test-fe
+        imagePullPolicy: Always
         resources:
           requests:
             cpu: 100m
