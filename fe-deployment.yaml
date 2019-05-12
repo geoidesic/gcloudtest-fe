@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: gcloudtest-fe
-        image: gcr.io/deployment-test-239915/gcloud-test-fe:v7
+        image: gcr.io/deployment-test-239915/gcloud-test-fe:v8
         imagePullPolicy: Always
         resources:
           requests:

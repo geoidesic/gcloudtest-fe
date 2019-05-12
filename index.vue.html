@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Welcome to Vue</title>
+  <script src="https://unpkg.com/vue"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+  <style>
+    .button {
+      width: 200px;
+      height: 40px;
+      background-color: #aaa;
+      color: white;
+      border-radius: 5px;
+      border: 1px solid transparent;
+      font-weight: bold;
+      cursor: pointer;
+      padding: 4px 8px;
+      font-family: sans-serif;
+      vertical-align: center;
+      line-height: 40px;
+      text-align: center;
+      font-size: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <img src="https://vuejs.org/images/logo.png" alt="Vue logo">
+    <h1>test node api</h1>
+    <div class="button" v-on:click="clickme">
+      Click me!
+    </div>
+    <div class="response" v-bind:html="response">
+
+    </div>
+  </div>
+
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        greeting: 'Welcome to your Vue.js app!',
+        docsURL: 'http://vuejs.org/guide/',
+        discordURL: 'https://chat.vuejs.org',
+        forumURL: 'http://forum.vuejs.org/',
+        response: '...'
+      },
+      methods: {
+        humanizeURL: function (url) {
+          return url
+            .replace(/^https?:\/\//, '')
+            .replace(/\/$/, '')
+        },
+        clickme: function() {
+          axios.get('be:3000/test', {
+
+          })
+          .then(response => {
+            console.log(response);
+            alert('yo ' + response.data.message);
+            this.response = response
+          })
+          .catch(e => {
+            console.log(e)
+          })
+        }
+      }
+    })
+  </script>
+</body>
+</html>

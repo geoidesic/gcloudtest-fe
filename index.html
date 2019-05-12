@@ -2,8 +2,10 @@
 <html>
 <head>
   <title>Welcome to Vue</title>
-  <script src="https://unpkg.com/vue"></script>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
 
   <style>
     .button {
@@ -28,45 +30,31 @@
   <div id="app">
     <img src="https://vuejs.org/images/logo.png" alt="Vue logo">
     <h1>test node api</h1>
-    <div class="button" v-on:click="clickme">
+    <div class="button" id="clickme">
       Click me!
     </div>
-    <div class="response" v-bind:html="response">
+    <div class="response" id="response">
 
     </div>
   </div>
 
   <script>
-    var app = new Vue({
-      el: '#app',
-      data: {
-        greeting: 'Welcome to your Vue.js app!',
-        docsURL: 'http://vuejs.org/guide/',
-        discordURL: 'https://chat.vuejs.org',
-        forumURL: 'http://forum.vuejs.org/',
-        response: '...'
-      },
-      methods: {
-        humanizeURL: function (url) {
-          return url
-            .replace(/^https?:\/\//, '')
-            .replace(/\/$/, '')
-        },
-        clickme: function() {
-          axios.get('be:3000/test', {
 
-          })
-          .then(response => {
-            console.log(response);
-            alert('yo ' + response.data.message);
-            this.response = response
-          })
-          .catch(e => {
-            console.log(e)
-          })
-        }
-      }
+  $(function() {
+    $('#clickme').click(function(ev) {
+      $.ajax({
+        url: 'be:3000/test',
+        success: function(response) {
+          console.log(response);
+        },
+        error: function(reason) {
+          console.log(reason);
+        },
+        method: 'GET'
+      });
     })
+  });
+
   </script>
 </body>
 </html>
